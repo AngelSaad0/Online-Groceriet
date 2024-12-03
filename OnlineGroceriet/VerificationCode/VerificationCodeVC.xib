@@ -58,7 +58,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Cq4-uY-zfx" userLabel="stack code">
                             <rect key="frame" x="2" y="1" width="107" height="23"/>
                             <subviews>
-                                <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4So-fN-RlH">
+                                <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4So-fN-RlH">
                                     <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="pwk-QK-Q5J"/>
@@ -66,7 +66,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWh-5e-eg1">
+                                <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWh-5e-eg1">
                                     <rect key="frame" x="28" y="0.0" width="23" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="blT-RL-nna"/>
@@ -74,7 +74,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DT8-xS-I6D">
+                                <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DT8-xS-I6D">
                                     <rect key="frame" x="56" y="0.0" width="23" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="Gcp-Uy-Raq"/>
@@ -82,7 +82,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9F-KR-3XT">
+                                <textField opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9F-KR-3XT">
                                     <rect key="frame" x="84" y="0.0" width="23" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="Nb3-sj-NUT"/>
@@ -118,6 +118,9 @@
                     <color key="tintColor" name="#53B175"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="next"/>
+                    <connections>
+                        <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="5YV-9o-NBP"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNm-fC-4BN">
                     <rect key="frame" x="25" y="637.66666666666663" width="108" height="34"/>
@@ -164,7 +167,7 @@
             <color red="0.32499998807907104" green="0.6940000057220459" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="#7C7C7C">
-            <color red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.48600000143051147" green="0.48600000143051147" blue="0.48600000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="#c7bcb6">
             <color red="0.77999997138977051" green="0.7369999885559082" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -75,5 +75,7 @@ public enum ValidMessage: String {
     case discountCodeEmpty = "You have not entered a discount code"
     case discountCodeFailed = "Entered discount code is not valid"
     case otpResent = "OTP has been resent successfully!"
+    case zoneEmpty = "please select your zone"
+    case areaEmpty = "please select your area"
 
 }

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A9EEC0762CFA463D00A9AF50 /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A9EEC0752CFA463D00A9AF50 /* CountryPicker */; };
-		A9EEC1622CFA7CC000A9AF50 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EEC1612CFA7CC000A9AF50 /* PhoneNumberKit */; };
-		A9EEC1C42CFA9D1900A9AF50 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = A9EEC1C32CFA9D1900A9AF50 /* SwiftMessages */; };
+		A9893A0D2CFB876F003EF2CE /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A9893A0C2CFB876F003EF2CE /* CountryPicker */; };
+		A9F444FE2CFB9E5700E026B7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9F444FD2CFB9E5700E026B7 /* IQKeyboardManagerSwift */; };
+		E1A1228E8CEED86D22FAC477 /* Pods_OnlineGroceriet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57850AD54A28D198B1B7CC01 /* Pods_OnlineGroceriet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +26,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E75DB328C39CBDB01E95E4B /* Pods-OnlineGroceriet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriet.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet.debug.xcconfig"; sourceTree = "<group>"; };
+		57850AD54A28D198B1B7CC01 /* Pods_OnlineGroceriet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EA098D2CFA1AE200C1E8D1 /* OnlineGroceriet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineGroceriet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C033F03E0C051B7315A263 /* Pods-OnlineGroceriet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriet.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -55,9 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9EEC0762CFA463D00A9AF50 /* CountryPicker in Frameworks */,
-				A9EEC1C42CFA9D1900A9AF50 /* SwiftMessages in Frameworks */,
-				A9EEC1622CFA7CC000A9AF50 /* PhoneNumberKit in Frameworks */,
+				E1A1228E8CEED86D22FAC477 /* Pods_OnlineGroceriet.framework in Frameworks */,
+				A9893A0D2CFB876F003EF2CE /* CountryPicker in Frameworks */,
+				A9F444FE2CFB9E5700E026B7 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,8 @@
 		08D441D3240B3197AEEFAAAC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				2E75DB328C39CBDB01E95E4B /* Pods-OnlineGroceriet.debug.xcconfig */,
+				D5C033F03E0C051B7315A263 /* Pods-OnlineGroceriet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 		A9EEC15D2CFA794C00A9AF50 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57850AD54A28D198B1B7CC01 /* Pods_OnlineGroceriet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,10 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9EA09A02CFA1AE300C1E8D1 /* Build configuration list for PBXNativeTarget "OnlineGroceriet" */;
 			buildPhases = (
+				DB3B18E07BE5C02E5BEA0B24 /* [CP] Check Pods Manifest.lock */,
 				A9EA09892CFA1AE200C1E8D1 /* Sources */,
 				A9EA098A2CFA1AE200C1E8D1 /* Frameworks */,
 				A9EA098B2CFA1AE200C1E8D1 /* Resources */,
 				A9EEC0DF2CFA742300A9AF50 /* Embed Frameworks */,
+				DA7FB3F1E5D4DEC84C116255 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,9 +153,8 @@
 			mainGroup = A9EA09842CFA1AE200C1E8D1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A9EEC0742CFA463D00A9AF50 /* XCRemoteSwiftPackageReference "CountryPicker" */,
-				A9EEC1602CFA7CC000A9AF50 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
-				A9EEC1C22CFA9D1900A9AF50 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				A9893A0B2CFB876F003EF2CE /* XCRemoteSwiftPackageReference "CountryPicker" */,
+				A9F444FC2CFB9E5700E026B7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A9EA098E2CFA1AE200C1E8D1 /* Products */;
@@ -169,6 +176,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DA7FB3F1E5D4DEC84C116255 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB3B18E07BE5C02E5BEA0B24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnlineGroceriet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A9EA09892CFA1AE200C1E8D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -182,6 +231,7 @@
 /* Begin XCBuildConfiguration section */
 		A9EA09A12CFA1AE300C1E8D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E75DB328C39CBDB01E95E4B /* Pods-OnlineGroceriet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -208,6 +258,7 @@
 		};
 		A9EA09A22CFA1AE300C1E8D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5C033F03E0C051B7315A263 /* Pods-OnlineGroceriet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -375,7 +426,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A9EEC0742CFA463D00A9AF50 /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
+		A9893A0B2CFB876F003EF2CE /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mobven/CountryPicker.git";
 			requirement = {
@@ -383,39 +434,26 @@
 				minimumVersion = 2.0.3;
 			};
 		};
-		A9EEC1602CFA7CC000A9AF50 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+		A9F444FC2CFB9E5700E026B7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
-			};
-		};
-		A9EEC1C22CFA9D1900A9AF50 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.1;
+				minimumVersion = 8.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A9EEC0752CFA463D00A9AF50 /* CountryPicker */ = {
+		A9893A0C2CFB876F003EF2CE /* CountryPicker */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A9EEC0742CFA463D00A9AF50 /* XCRemoteSwiftPackageReference "CountryPicker" */;
+			package = A9893A0B2CFB876F003EF2CE /* XCRemoteSwiftPackageReference "CountryPicker" */;
 			productName = CountryPicker;
 		};
-		A9EEC1612CFA7CC000A9AF50 /* PhoneNumberKit */ = {
+		A9F444FD2CFB9E5700E026B7 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A9EEC1602CFA7CC000A9AF50 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
-			productName = PhoneNumberKit;
-		};
-		A9EEC1C32CFA9D1900A9AF50 /* SwiftMessages */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A9EEC1C22CFA9D1900A9AF50 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
-			productName = SwiftMessages;
+			package = A9F444FC2CFB9E5700E026B7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

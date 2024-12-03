@@ -9,7 +9,7 @@ import UIKit
 
 extension UIButton {
 
-    func setCustomFont(font: Fonts, size: CGFloat) {
+    func setCustomFont(font: Fonts = .gilroyMedium, size: CGFloat) {
         self.titleLabel?.font = UIFont(name: font.rawValue, size: size)
     }
 

@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-OnlineGroceriet/Pods-OnlineGroceriet-frameworks.sh
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
+${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework
+${BUILT_PRODUCTS_DIR}/StarRatingView/StarRatingView.framework
+${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework

@@ -27,6 +27,8 @@ class UserDefaultsManager {
     var currency: String = ""
     var country: String = ""
     var countryFlag: String = ""
+    var zone: String = ""
+    var area: String = ""
 
     private init(){
         getStoredData()
@@ -48,6 +50,8 @@ class UserDefaultsManager {
         self.wishlistID = getSharedInt(forKey: "wishlistID")
         self.shoppingCartID = getSharedInt(forKey: "shoppingCartID")
         self.currency = getSharedString(forKey: "currency")
+        self.zone = getSharedString(forKey: "zone")
+        self.area = getSharedString(forKey: "area")
         self.exchangeRate = getSharedDouble(forKey: "exchangeRate")
 
 
@@ -74,6 +78,8 @@ class UserDefaultsManager {
         setSharedValue("wishlistID", value: wishlistID)
         setSharedValue("shoppingCartID", value: shoppingCartID)
         setSharedValue("currency", value: currency)
+        setSharedValue("zone", value: zone)
+        setSharedValue("area", value: area)
 
     }
     func logout(){
@@ -91,6 +97,8 @@ class UserDefaultsManager {
         removeValue(forKey: "wishlistID")
         removeValue(forKey: "shoppingCartID")
         removeValue(forKey: "currency")
+        removeValue(forKey: "zone")
+        removeValue(forKey: "area")
        
 //        removeValue(forKey: "isBoarding")
 //        clearCache()

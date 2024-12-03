@@ -84,8 +84,9 @@ class VerificationCodeVC: UIViewController {
             partialResult + (textField.text?.count ?? 0)
         }
         if  partialResult == 4  {
-            presentDetail(SelectLocationVC())
+            displayMessage(massage: .successLogin,isError: false)
 
+            presentDetail(SelectLocationVC())
         } else {
             displayMessage(massage: .otpFail)
         }

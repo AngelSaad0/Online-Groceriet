@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExploreVC" customModule="OnlineGroceriet" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="5Ze-rf-3Us" id="eVv-DL-wc4"/>
+                <outlet property="filterButton" destination="vff-LP-cZJ" id="P9g-I0-9hS"/>
+                <outlet property="searchBar" destination="HfX-aY-Lbs" id="IcN-hG-PY9"/>
+                <outlet property="titleLabel" destination="WeZ-fm-ydC" id="Mn1-4s-tBr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-t0-0wc">
+                    <rect key="frame" x="24" y="69" width="345" height="105"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeZ-fm-ydC">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="LQU-j3-vTM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="V0V-Vc-uKv">
+                            <rect key="frame" x="0.0" y="50" width="345" height="55"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Store" translatesAutoresizingMaskIntoConstraints="NO" id="HfX-aY-Lbs">
+                                    <rect key="frame" x="0.0" y="0.0" width="308" height="55"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="vRe-ZQ-6e0"/>
+                                    </constraints>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="PRU-mF-C68"/>
+                                    </connections>
+                                </searchBar>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vff-LP-cZJ">
+                                    <rect key="frame" x="327" y="0.0" width="18" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="18" id="aIE-Yn-a79"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="sort"/>
+                                    <connections>
+                                        <action selector="filterButtonCliked:" destination="-1" eventType="touchUpInside" id="wUA-H8-Fl7"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5Ze-rf-3Us">
+                    <rect key="frame" x="0.0" y="184" width="393" height="634"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="dyz-LE-UHk">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="24" minY="24" maxX="24" maxY="24"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="kG5-t0-0wc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="2Ms-Bb-fNg"/>
+                <constraint firstItem="5Ze-rf-3Us" firstAttribute="top" secondItem="kG5-t0-0wc" secondAttribute="bottom" constant="10" id="YC7-79-Ght"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kG5-t0-0wc" secondAttribute="trailing" constant="24" id="Z4D-XJ-b0c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Ze-rf-3Us" secondAttribute="trailing" id="lUT-om-GI5"/>
+                <constraint firstItem="kG5-t0-0wc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="uHP-CG-XqV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5Ze-rf-3Us" secondAttribute="bottom" id="ufm-ch-wxB"/>
+                <constraint firstItem="5Ze-rf-3Us" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xI8-Dh-aFY"/>
+            </constraints>
+            <point key="canvasLocation" x="43.511450381679388" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="sort" width="19" height="19"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
