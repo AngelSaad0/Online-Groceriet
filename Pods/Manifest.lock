@@ -1,30 +1,30 @@
 PODS:
+  - Cosmos (25.0.1)
   - DropDown (2.3.13)
   - SkyFloatingLabelTextField (4.0.0)
-  - StarRatingView (1.3.0)
   - SwiftMessages (10.0.1):
     - SwiftMessages/App (= 10.0.1)
   - SwiftMessages/App (10.0.1)
 
 DEPENDENCIES:
+  - Cosmos
   - DropDown
   - SkyFloatingLabelTextField
-  - StarRatingView
   - SwiftMessages
 
 SPEC REPOS:
   trunk:
+    - Cosmos
     - DropDown
     - SkyFloatingLabelTextField
-    - StarRatingView
     - SwiftMessages
 
 SPEC CHECKSUMS:
+  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
-  StarRatingView: 6b6e0e762bbcce3aae8bdbde97dab54342333f7b
   SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
 
-PODFILE CHECKSUM: 30eef81cd85e6eb49e671384b8d024ebe6c1a70b
+PODFILE CHECKSUM: b5388fc0100c3eba6eb7f8475729dcd8fab1a380
 
 COCOAPODS: 1.16.2

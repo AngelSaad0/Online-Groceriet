@@ -24,11 +24,11 @@ class HomeVC: UIViewController {
     let userDefaults = UserDefaultsManager.shared
     private var currentPage = 0
     private var timer: Timer?
-    let offersList = Array(repeating: "ads", count: 4)
+    let offersList = ["add1","add2","add3","add4"]
     let exclusiveOfferList = dummyProducts
     let bestSellingList =  Array(dummyProducts.reversed())
     let groceriesCategory = dummyCategory
-    let groceriesList = dummyProducts.filter{$0.category == "Groceries"}
+    let groceriesList = dummyProducts.shuffled()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

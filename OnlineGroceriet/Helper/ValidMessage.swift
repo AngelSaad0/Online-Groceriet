@@ -77,5 +77,7 @@ public enum ValidMessage: String {
     case otpResent = "OTP has been resent successfully!"
     case zoneEmpty = "please select your zone"
     case areaEmpty = "please select your area"
+    case maxQuantity = "Maximum quantity is 5"
+    case minQuantity = "Minimum quantity is 1"
 
 }

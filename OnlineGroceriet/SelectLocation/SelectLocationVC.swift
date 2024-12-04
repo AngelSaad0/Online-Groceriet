@@ -142,7 +142,7 @@ class SelectLocationVC: UIViewController {
         UserDefaultsManager.shared.area = area
         UserDefaultsManager.shared.isLogin = true
         UserDefaultsManager.shared.storeData()
-        presentDetail(HomeVC())
+        UIWindow.setRootViewController(viewController: MainTabBarVC())
     }
 
 }

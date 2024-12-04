@@ -11,7 +11,9 @@ pod 'SwiftMessages'
 #pod 'SKCountryPicker'
 pod 'DropDown'
 pod 'SkyFloatingLabelTextField'
-pod 'StarRatingView'
+pod 'Cosmos'
+
+#pod 'StarRatingView'
 
 
 end
