@@ -58,10 +58,10 @@ extension UIView {
     @MainActor func displayEmptyMessage(_ message: String) {
         let messageLabel = UILabel()
         messageLabel.text = message
-        messageLabel.textColor = .black
+        messageLabel.textColor = ._4_D_7_E_58
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
-        messageLabel.font = UIFont(name: "Avenir", size: 18)
+        messageLabel.setCustomFont(font: .gilroyBold,size: 20)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
 
         self.addSubview(messageLabel)
@@ -76,7 +76,7 @@ extension UIView {
 
     @MainActor func removeEmptyMessage() {
         for subview in self.subviews {
-            if let label = subview as? UILabel, label.textColor == .black {
+            if let label = subview as? UILabel, label.textColor == ._4_D_7_E_58 {
                 label.removeFromSuperview()
             }
         }
