@@ -15,9 +15,11 @@ struct DummyCategory: Identifiable {
 }
 let dummyCategory: [DummyCategory] = [
     DummyCategory(name: "Fresh Fruits & Vegetables", imageName: "fruits_vegetables", backgroundColorHex: "#E8F5E9"),
-    DummyCategory(name: "Cooking Oil & Ghee", imageName: "cooking_oil", backgroundColorHex: "#FFF3E0"),
+    DummyCategory(name: "Canned Goods", imageName: "Canned_Goods", backgroundColorHex: "#FFF3E0"),
     DummyCategory(name: "Meat & Fish", imageName: "meat_fish", backgroundColorHex: "#FFEBEE"),
     DummyCategory(name: "Bakery & Snacks", imageName: "bakery_snacks", backgroundColorHex: "#F3E5F5"),
     DummyCategory(name: "Dairy & Eggs", imageName: "dairy_eggs", backgroundColorHex: "#FFF9E1"),
     DummyCategory(name: "Beverages", imageName: "beverages", backgroundColorHex: "#E3F2FD"),
+    DummyCategory(name: "Cooking Oil & Ghee", imageName: "cooking_oil", backgroundColorHex: "#F9F3E0"),
+
 ]

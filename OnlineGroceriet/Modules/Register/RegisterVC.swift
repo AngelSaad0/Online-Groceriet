@@ -14,17 +14,14 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var iHaveAccountLabel: UILabel!
-    @IBOutlet weak var useNameTextField: SkyFloatingLabelTextField!
-
-    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
-
-
     @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var privacyButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var togglePasword: UIButton!
+    @IBOutlet weak var useNameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     // MARK: - Properties
     var isSecureTextField = true
     // MARK: - Lifecycle
@@ -39,11 +36,13 @@ class RegisterVC: UIViewController {
         setupButtons()
         configureKeyboardManager()
     }
+
     private func setupLabels() {
         titleLabel.setCustomFont(size: 26)
         subTitleLabel.setCustomFont(size: 16)
         iHaveAccountLabel.setCustomFont(size: 14)
     }
+
     private func setupTextFields() {
         let txts = [emailTextField,passwordTextField,useNameTextField]
         txts.forEach{
@@ -53,11 +52,13 @@ class RegisterVC: UIViewController {
             $0?.lineColor = .c7Bcb6
             $0?.placeholder = $0?.placeholder?.capitalized
         }
+
         useNameTextField.setCustomFont( size: 18)
         emailTextField.setCustomFont( size: 18)
         passwordTextField.setCustomFont( size: 18)
 
     }
+
     private func setupButtons() {
         termsButton.setCustomFont(size: 14)
         privacyButton.setCustomFont(size: 14)
@@ -66,11 +67,13 @@ class RegisterVC: UIViewController {
         signUpButton.addCornerRadius(20)
 
     }
+
     private func configureKeyboardManager() {
         IQKeyboardManager.shared.resignOnTouchOutside = true
         IQKeyboardManager.shared.keyboardDistance = 10
         IQKeyboardManager.shared.layoutIfNeededOnUpdate = true
     }
+    
     // MARK: - Actions
     @IBAction func togglePaswordClicked(_ sender: UIButton) {
         isSecureTextField.toggle()

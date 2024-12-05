@@ -56,7 +56,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="addAllToCartButtonCliked:" destination="-1" eventType="touchUpInside" id="FJs-2c-Lzg"/>
+                        <action selector="addAllToCartButtonClicked:" destination="-1" eventType="touchUpInside" id="zhN-3r-4es"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-RB-BHh">

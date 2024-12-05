@@ -14,25 +14,27 @@ class MainTabBarVC: UITabBarController {
         setupUI()
         setupTabBarAppearance()
     }
-    // MARK: -  setup UI for Main TabBar
+
+    // MARK: -  Setup UI for Main TabBar
     private func setupUI() {
-        let homeVC = createViewController(for: HomeVC.self, image: "home",title: "Home")
-        let exploreVC = createViewController(for: ExploreVC.self, image:"explore",title: "Explore")
-        let cartVC = createViewController(for: CartVC.self, image: "cart",title: "Cart")
-        let favouriteVC = createViewController(for: FavouriteVC.self, image:"favourite",title: "Favourite")
-        let accountVC = createViewController(for: AccountVC.self, image:"account",title: "Account")
-        viewControllers = [homeVC, exploreVC, cartVC, favouriteVC,accountVC]
+        let homeVC = createViewController(for: HomeVC.self, image: "home", title: "Home")
+        let exploreVC = createViewController(for: ExploreVC.self, image: "explore", title: "Explore")
+        let cartVC = createViewController(for: CartVC.self, image: "cart", title: "Cart")
+        let favouriteVC = createViewController(for: FavouriteVC.self, image: "favourite", title: "Favourite")
+        let accountVC = createViewController(for: AccountVC.self, image: "account", title: "Account")
+
+        viewControllers = [homeVC, exploreVC, cartVC, favouriteVC, accountVC]
     }
 
-    // MARK: -  create ViewController
-    private func createViewController(for viewControllerID: UIViewController.Type, image: String,title:String) -> UIViewController {
+    // MARK: -  Create ViewController
+    private func createViewController(for viewControllerID: UIViewController.Type, image: String, title: String) -> UIViewController {
         let vc = viewControllerID.init()
         vc.title = title
-
         vc.tabBarItem.image = UIImage(named: image)
         return vc
     }
-    // MARK: -  setup TabBar Appearance
+
+    // MARK: -  Setup TabBar Appearance
     private func setupTabBarAppearance() {
         let customFont = UIFont(name: Fonts.gilroyMedium.rawValue, size: 12) ?? UIFont.systemFont(ofSize: 12)
         let normalAttributes: [NSAttributedString.Key: Any] = [
@@ -55,6 +57,4 @@ class MainTabBarVC: UITabBarController {
         tabBar.barTintColor = UIColor.white
         tabBar.isTranslucent = false
     }
-
-
 }

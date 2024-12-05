@@ -9,20 +9,23 @@ import UIKit
 
 class FiltersVC: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var containerView: UIView!
 
-    let categoryList = Array(Set(dummyProducts.map{$0.category})).sorted()
-    let brandList = Array(Set(dummyProducts.map{$0.brand})).sorted()
+    // MARK: - Properties
+    let categoryList = Array(Set(dummyProducts.map { $0.category })).sorted()
+    let brandList = Array(Set(dummyProducts.map { $0.brand })).sorted()
     let headers = ["Categories", "Brand"]
 
     var userClearData = false
     var filterBrandList = Set<String>()
     var filterCategoryList = Set<String>()
-    var filterResult: ((Set<String>, Set<String>) -> ())?
+    var filterResult: ((Set<String>, Set<String>) -> Void)?
 
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -58,11 +61,14 @@ class FiltersVC: UIViewController {
     }
 
     private func setupSelection() {
+        // Select previously selected categories
         for (index, category) in categoryList.enumerated() {
             if filterCategoryList.contains(category) {
                 tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .none)
             }
         }
+
+        // Select previously selected brands
         for (index, brand) in brandList.enumerated() {
             if filterBrandList.contains(brand) {
                 tableView.selectRow(at: IndexPath(row: index, section: 1), animated: false, scrollPosition: .none)
@@ -90,13 +96,6 @@ class FiltersVC: UIViewController {
 
 // MARK: - UITableViewDataSource
 extension FiltersVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return headers[section]
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return headers.count
@@ -109,8 +108,17 @@ extension FiltersVC: UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headers[section]
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FiltersTVCell = tableView.dequeueTVCell(index: indexPath, cell: FiltersTVCell.self)
+
         switch indexPath.section {
         case 0:
             let isSelected = filterCategoryList.contains(categoryList[indexPath.row])
@@ -121,12 +129,14 @@ extension FiltersVC: UITableViewDataSource {
             cell.configImage(isSelected)
             cell.configDummyData(brandList[indexPath.row])
         }
+
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension FiltersVC: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:

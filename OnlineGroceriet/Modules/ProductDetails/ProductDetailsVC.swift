@@ -5,6 +5,13 @@
 //  Created by Engy on 12/3/24.
 //
 
+//
+//  ProductDetailsVC.swift
+//  OnlineGroceriet
+//
+//  Created by Engy on 12/3/24.
+//
+
 import UIKit
 import Cosmos
 
@@ -27,21 +34,27 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet var itemCountLabel: UILabel!
     @IBOutlet var minusButton: UIButton!
     @IBOutlet var plusButton: UIButton!
-    
-
+    @IBOutlet weak var addToFavorteButton: UIButton!
     @IBOutlet weak var starRatingView: CosmosView!
-    
+
     // MARK: - Properties
     var productDetails: DummyProduct!
     var dummyProductImageList: [String] = []
-    var isFavorite = false
-    let coreManager = CartManager.shared
+    var isFavorite: Bool = false {
+        didSet {
+            updateFavoriteButtonImage()
+            updateCoreData()
+        }
+    }
+    let cartManager = CartManager.shared
+    let favorteManager = FavoritesManager.shared
     private var currentPage = 0
     private var timer: Timer?
     private var productQuantity = 1 {
         didSet {
             itemCountLabel.text = "\(productQuantity)"
             updateButtonState()
+            updatePrice()
         }
     }
     lazy var nutritionView = NutritionsDetailView(frame: .zero)
@@ -49,11 +62,20 @@ class ProductDetailsVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         producImageDummyData()
         setupUI()
         configureAdsPageControl()
         setupStarRatingView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTimer()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTimer()
     }
 
     // MARK: - Setup Methods
@@ -61,25 +83,23 @@ class ProductDetailsVC: UIViewController {
         setupLabels()
         setupButtons()
         setupContainerView()
+        checkFavoriteState()
         setupCollectionView()
         updateDetails()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startTimer()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTimer()
-    }
+
     private func setupLabels() {
         titleLabel.setCustomFont(font: .gilroyBold, size: 26)
         priceLabel.setCustomFont(font: .gilroyBold, size: 24)
-        subTitleLabels.forEach{$0.setCustomFont(font: .gilroyMedium,size: 16)}
+        subTitleLabels.forEach { $0.setCustomFont(font: .gilroyMedium, size: 16) }
         detailsLabel.setCustomFont(size: 16)
         subDetailsLabel.setCustomFont(font: .gilroyMedium, size: 16)
         quantityLabel.setCustomFont(size: 9)
         itemCountLabel.setCustomFont(size: 18)
+    }
+
+    private func checkFavoriteState() {
+        isFavorite = favorteManager.isProductInFavorites(productId: productDetails.id)
     }
 
     private func setupButtons() {
@@ -88,7 +108,7 @@ class ProductDetailsVC: UIViewController {
     }
 
     private func setupContainerView() {
-        collectionContainerView.addCornerRadius(corners: [.layerMinXMaxYCorner,.layerMaxXMaxYCorner], radius: 30)
+        collectionContainerView.addCornerRadius(corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 30)
         labelContainerView.addCornerRadius(17)
         labelContainerView.addBorder(color: .F_2_F_3_F_2, width: 2)
         quantityView.addCornerRadius(8)
@@ -97,7 +117,7 @@ class ProductDetailsVC: UIViewController {
     private func updateDetails() {
         detailsLabel.text = "\(productDetails.quantity), Price"
         subDetailsLabel.text = productDetails.productDetail
-        quantityLabel.text =  productDetails.nutritionsPerAmount
+        quantityLabel.text = productDetails.nutritionsPerAmount
         priceLabel.text = "$ \(productDetails.price)"
     }
 
@@ -108,9 +128,10 @@ class ProductDetailsVC: UIViewController {
     }
 
     private func producImageDummyData() {
-        let image =  productDetails.imageName
-        dummyProductImageList = [image,"details2",image,"details1"]
+        let image = productDetails.imageName
+        dummyProductImageList = [image, "details2", image, "details1"]
     }
+
     private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateAdsScroll), userInfo: nil, repeats: true)
     }
@@ -120,22 +141,41 @@ class ProductDetailsVC: UIViewController {
         timer = nil
     }
 
-
     @objc private func updateAdsScroll() {
         let nextPage = (currentPage < dummyProductImageList.count - 1) ? currentPage + 1 : 0
         collectionView.scrollToItem(at: IndexPath(item: nextPage, section: 0), at: .centeredHorizontally, animated: true)
     }
+
     private func configureAdsPageControl() {
         pageControl.numberOfPages = dummyProductImageList.count
     }
-    func pushProductDetailsVC(_ productDetails: DummyProduct) {
-        let vc = ProductDetailsVC()
-        vc.productDetails = productDetails
-        presentDetail(vc)
+
+    private func updateButtonState() {
+        plusButton.setImage(UIImage(named: productQuantity == 5 ? "plusUnActive" : "plusActive"), for: .normal)
+        minusButton.setImage(UIImage(named: productQuantity == 1 ? "minusUnActive" : "minusActive"), for: .normal)
     }
-    func updateButtonState() {
-        plusButton.setImage(UIImage(named: productQuantity==5 ? "plusUnActive":"plusActive"), for: .normal)
-        minusButton.setImage(UIImage(named: productQuantity==1 ? "minusUnActive":"minusActive"), for: .normal)
+
+    private func updatePrice() {
+        priceLabel.text = "$ \(productDetails.price * Double(productQuantity))"
+    }
+
+    private func updateFavoriteButtonImage() {
+        let image = UIImage(named: isFavorite ? "heart.fill" : "heart")
+        addToFavorteButton.setImage(image, for: .normal)
+    }
+
+    private func saveData() {
+        cartManager.addProduct(productId: productDetails.id, quantity: productQuantity)
+    }
+
+    private func updateCoreData() {
+        if isFavorite {
+            if !favorteManager.isProductInFavorites(productId: productDetails.id) {
+                favorteManager.addProduct(productId: productDetails.id)
+            }
+        } else {
+            favorteManager.removeProduct(productId: productDetails.id)
+        }
     }
     private func setupStarRatingView() {
         starRatingView.contentMode = .right
@@ -144,57 +184,52 @@ class ProductDetailsVC: UIViewController {
         starRatingView.settings.filledImage = .star
         starRatingView.rating = Double(productDetails.review) ?? 1
         starRatingView.isUserInteractionEnabled = false
-        starRatingView.settings.filledColor = .yellow
-           starRatingView.settings.emptyBorderColor = .gray
-           starRatingView.settings.filledBorderColor = .yellow
-
-       }
-    private func saveData() {
-        coreManager.addProduct(productId: productDetails.id, quantity: productQuantity)
+        starRatingView.settings.filledColor = .F_3603_F
+        starRatingView.settings.emptyBorderColor = .gray
+        starRatingView.settings.filledBorderColor = .yellow
     }
 
     // MARK: - Actions
-    @IBAction func shareButtonClicked(_ sender: Any) {
-    }
+    @IBAction func shareButtonClicked(_ sender: Any) {}
+
     @IBAction func dismissButtonClicked(_ sender: Any) {
         dismissDetail()
     }
-    @IBAction func addToCartButtonClicked(_ sender: Any) {
-        saveData()
 
+    @IBAction func addToCartButtonClicked(_ sender: Any) {
+        displayMessage(massage: .addedToShoppingCart, isError: false)
+        saveData()
     }
 
     @IBAction func nutritionsDetailButtonClicked(_ sender: Any) {
         scrollView.addSubview(nutritionView)
         nutritionView.translatesAutoresizingMaskIntoConstraints = false
-               NSLayoutConstraint.activate([
-                nutritionView.topAnchor.constraint(equalTo: nutritionsDetailView.topAnchor),
-                nutritionView.bottomAnchor.constraint(equalTo: nutritionsDetailView.bottomAnchor),
-                nutritionView.leadingAnchor.constraint(equalTo: nutritionsDetailView.leadingAnchor),
-                nutritionView.trailingAnchor.constraint(equalTo: nutritionsDetailView.trailingAnchor),
-               ])
+        NSLayoutConstraint.activate([
+            nutritionView.topAnchor.constraint(equalTo: nutritionsDetailView.topAnchor),
+            nutritionView.bottomAnchor.constraint(equalTo: nutritionsDetailView.bottomAnchor),
+            nutritionView.leadingAnchor.constraint(equalTo: nutritionsDetailView.leadingAnchor),
+            nutritionView.trailingAnchor.constraint(equalTo: nutritionsDetailView.trailingAnchor),
+        ])
         nutritionView.handelAction = {
             self.nutritionView.removeFromSuperview()
-
-              }
+        }
         nutritionView.textLabel.text = productDetails.nutritionsDetail
     }
 
-
     @IBAction func toggleProductDetails(_ sender: UIButton) {
-        subDetailsLabel.isHidden = !subDetailsLabel.isHidden
-        let buttonImage = subDetailsLabel.isHidden ?  "arrowDown2":"arrowUp"
-        sender.setImage(UIImage(named: buttonImage ), for: .normal)
+        UIView.transition(with: subDetailsLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.subDetailsLabel.isHidden = !self.subDetailsLabel.isHidden
+        }, completion: nil)
+        let buttonImage = subDetailsLabel.isHidden ? "arrowDown2" : "arrowUp"
+        sender.setImage(UIImage(named: buttonImage), for: .normal)
     }
 
     @IBAction func addToFavorite(_ sender: UIButton) {
         isFavorite.toggle()
-        let image = UIImage(named: isFavorite ? "heart":"heart.fill")
-        sender.setImage(image, for: .normal)
     }
 
     @IBAction func plusButtonClicked(_ sender: UIButton) {
-        if productQuantity < 5  {
+        if productQuantity < 5 {
             productQuantity += 1
         }
     }
@@ -208,18 +243,17 @@ class ProductDetailsVC: UIViewController {
     @IBAction func ratingButtonClicked(_ sender: Any) {
         starRatingView.isHidden = !starRatingView.isHidden
     }
-    
 }
+
 extension ProductDetailsVC: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
-
             currentPage = Int(scrollView.contentOffset.x / scrollView.frame.width)
             pageControl.currentPage = currentPage
         }
     }
-
 }
+
 extension ProductDetailsVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         dummyProductImageList.count
@@ -230,8 +264,8 @@ extension ProductDetailsVC: UICollectionViewDataSource {
         cell.image.image = UIImage(named: dummyProductImageList[indexPath.row])
         return cell
     }
-
 }
+
 extension ProductDetailsVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)

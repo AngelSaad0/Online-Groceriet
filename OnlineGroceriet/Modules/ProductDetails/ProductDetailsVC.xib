@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsVC" customModule="OnlineGroceriet" customModuleProvider="target">
             <connections>
                 <outlet property="addToCartButton" destination="5zg-6P-LL7" id="iPZ-VJ-jVJ"/>
+                <outlet property="addToFavorteButton" destination="bfw-UC-LP0" id="czU-rv-GFV"/>
                 <outlet property="collectionContainerView" destination="ecb-BT-75h" id="BSz-hv-7AB"/>
                 <outlet property="collectionView" destination="OnX-LS-ges" id="NbX-6h-2iA"/>
                 <outlet property="detailsLabel" destination="npp-Uv-ucp" id="OQd-ET-EZw"/>

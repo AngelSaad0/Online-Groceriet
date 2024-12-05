@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             IQKeyboardManager.shared.keyboardDistance = 10
             IQKeyboardManager.shared.layoutIfNeededOnUpdate = true
         window = UIWindow(frame: UIScreen.main.bounds)
-        if UserDefaultsManager.shared.isBoarding {
+        if !UserDefaultsManager.shared.isBoarding {
             window?.rootViewController = OnBoardingVC()
         } else  if UserDefaultsManager.shared.isLogin{
             window?.rootViewController = MainTabBarVC()

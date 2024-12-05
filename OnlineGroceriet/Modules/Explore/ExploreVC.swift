@@ -14,6 +14,7 @@ class ExploreVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+
     // MARK: - Properties
     var dummyCategoryList = dummyCategory
     var dummyProductList = dummyProducts
@@ -22,6 +23,14 @@ class ExploreVC: UIViewController {
     var filtterProductList = dummyProducts
     var filtterBrandList = Set<String>()
     var filtterCategotyList = Set<String>()
+
+    private var cellWidth: CGFloat {
+        let numberOfCells: CGFloat = 2
+        let totalSpacing = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing ?? 0
+        let availableWidth = collectionView.bounds.width - (numberOfCells - 1) * totalSpacing
+        return (availableWidth / numberOfCells) - 24
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +38,16 @@ class ExploreVC: UIViewController {
         setupCollectionView()
         searchBar.delegate = self
     }
+
     // MARK: - Setup Methods
     private func setupUI() {
         setupLabels()
         hideContainerView()
         configureKeyboardManager()
     }
+
     private func setupLabels() {
-        titleLabel.setCustomFont(font: .gilroyBold,size: 20)
+        titleLabel.setCustomFont(font: .gilroyBold, size: 20)
     }
 
     private func configureKeyboardManager() {
@@ -44,55 +55,71 @@ class ExploreVC: UIViewController {
         IQKeyboardManager.shared.keyboardDistance = 10
         IQKeyboardManager.shared.layoutIfNeededOnUpdate = true
     }
+
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerCVNib(cell: CategoryCVCell.self)
         collectionView.registerCVNib(cell: ProudctCVCell.self)
     }
-    private func hideContainerView(isHidden:Bool = false) {
+
+    private func hideContainerView(isHidden: Bool = false) {
         titleLabel.isHidden = isHidden
         filterButton.isHidden = !isHidden
     }
+
     // MARK: - Actions
     @IBAction func filterButtonCliked(_ sender: Any) {
         let vc = FiltersVC()
-        vc.filterResult = { categotyList , brandList in
+        vc.filterResult = { categotyList, brandList in
             self.filtterCategotyList = categotyList
             self.filtterBrandList = brandList
-            self.handelFillter()
+            self.filterProducts()
         }
         vc.filterCategoryList = self.filtterCategotyList
         vc.filterBrandList = self.filtterBrandList
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
-    private func handleEmptyCollectionView () {
-        if filtterProductList.isEmpty && isBeginSearch {
-            collectionView.displayEmptyMessage("No Product Found")
-        }else {
-            collectionView.removeEmptyMessage()
+
+    // MARK: - Filter and Search Logic
+    private func filterProducts() {
+        filtterProductList = dummyProductList.filter { product in
+            let matchesSearch = searchText.isEmpty || product.name.lowercased().contains(searchText.lowercased())
+            let matchesCategory = filtterCategotyList.isEmpty || filtterCategotyList.contains(product.category)
+            let matchesBrand = filtterBrandList.isEmpty || filtterBrandList.contains(product.brand)
+            return matchesSearch && (matchesCategory || matchesBrand)
         }
+        updateUIAfterFiltering()
     }
 
-    private func handelFillter() {
-        filtterProductList = dummyProductList
-        if !searchText.isEmpty {
-            filtterProductList = dummyProductList.filter{$0.name.lowercased().contains(searchText.lowercased())}
-        }
-        if !filtterCategotyList.isEmpty ||  !filtterBrandList.isEmpty {
-            filtterProductList = self.filtterProductList.filter{
-                filtterCategotyList.contains($0.category) || filtterBrandList.contains($0.brand)
-            }
-        }
-        handleEmptyCollectionView()
+    private func updateUIAfterFiltering() {
+        handleEmptyState(filtterProductList.isEmpty)
         collectionView.reloadData()
     }
+
+    private func handleEmptyState(_ isEmpty: Bool) {
+       isEmpty ?  collectionView.displayEmptyMessage("No Product Found") : collectionView.removeEmptyMessage()
+    }
 }
+
 // MARK: - UICollectionViewDelegate
 extension ExploreVC: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isBeginSearch {
+            let vc = ProductDetailsVC()
+            vc.productDetails = filtterProductList[indexPath.row]
+            presentDetail(vc)
+        } else {
+            let vc = SearchByCategoryVC()
+            let categoryName = dummyCategoryList[indexPath.row].name
+            vc.vcTitle = categoryName
+            vc.productList = dummyProducts.filter { categoryName.contains($0.category) }
+            presentDetail(vc)
+        }
+    }
 }
+
 // MARK: - UICollectionViewDataSource
 extension ExploreVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -104,35 +131,28 @@ extension ExploreVC: UICollectionViewDataSource {
             let cell: ProudctCVCell = collectionView.dequeueCVCell(for: indexPath, cell: ProudctCVCell.self)!
             cell.configDummyData(filtterProductList[indexPath.row])
             return cell
-        }else {
+        } else {
             let cell: CategoryCVCell = collectionView.dequeueCVCell(for: indexPath, cell: CategoryCVCell.self)!
             cell.configDummyData(dummyCategoryList[indexPath.row])
             return cell
         }
     }
 }
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ExploreVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCellInRow: CGFloat = 2
-        if let flowlayout = collectionViewLayout as? UICollectionViewFlowLayout {
-            let collectionViewWidth = collectionView.bounds.width
-            let spacingBetweenCell = flowlayout.minimumLineSpacing*(numberOfCellInRow-1)
-            let adjustWidth = collectionViewWidth-spacingBetweenCell
-            let width = adjustWidth/numberOfCellInRow
-            let height:CGFloat = isBeginSearch ? 250 : width*190/175
-            return CGSize(width: width-24, height: height)
-        }
-        return .zero
+        let height: CGFloat = isBeginSearch ? 250 : cellWidth * 190 / 175
+        return CGSize(width: cellWidth, height: height)
     }
 }
-// MARK: - UITextFieldDelegate
+
+// MARK: - UISearchBarDelegate
 extension ExploreVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        isBeginSearch = !searchText.isEmpty
-        self.searchText = searchText
-        handelFillter()
+        self.searchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        isBeginSearch = !self.searchText.isEmpty
+        filterProducts()
         hideContainerView(isHidden: isBeginSearch)
-
     }
 }
